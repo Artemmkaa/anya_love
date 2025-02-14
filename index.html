@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Валентина, Аня!</title>
+    <style>
+        :root {
+            --main: #802020; /* Основной цвет */
+            --accent: #fb8e8e; /* Акцентный цвет */
+            --bg: #402000; /* Фон изменён на #402000 */
+            --text: #ffb5b5; /* Цвет текста */
+            --overlay: rgba(128, 32, 32, 0.1); /* Полупрозрачный слой */
+        }
+
+        body {
+            font-family: 'Georgia', serif; /* Изменён шрифт на Georgia */
+            background: var(--bg); /* Фон теперь #402000 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(var(--overlay) 15%, transparent 15%) 0 0,
+                radial-gradient(var(--overlay) 15%, transparent 15%) 8px 8px;
+            background-size: 16px 16px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(8px, 8px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .container {
+            text-align: center;
+            background: var(--bg); /* Фон контейнера теперь #402000 */
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 
+                0 0 30px var(--overlay),
+                0 8px 20px rgba(0,0,0,0.3);
+            max-width: 600px;
+            border: 1px solid var(--main);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .container > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container > *:nth-child(1) { animation-delay: 0.2s; }
+        .container > *:nth-child(2) { animation-delay: 0.4s; }
+        .container > *:nth-child(3) { animation-delay: 0.6s; }
+        .container > *:nth-child(4) { animation-delay: 0.8s; }
+        .container > *:nth-child(5) { animation-delay: 1s; }
+        .container > *:nth-child(6) { animation-delay: 1.2s; }
+
+        h1 {
+            color: var(--accent);
+            font-size: 3em; /* Увеличен размер шрифта */
+            margin-bottom: 20px; /* Уменьшен отступ */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--main) 50%, transparent 100%);
+        }
+
+        p {
+            font-size: 1.4em; /* Увеличен размер шрифта */
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 20px; /* Уменьшен отступ */
+            position: relative;
+            z-index: 1;
+        }
+
+        .heart {
+            color: var(--main);
+            font-size: 3.5em;
+            animation: pulse 1.5s infinite, float 3s ease-in-out infinite;
+            text-shadow: 0 0 20px #402000;
+            margin: 20px 0;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .heart:hover {
+            transform: scale(1.3);
+            color: var(--accent);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .photo-container {
+            margin: 20px 0; /* Уменьшен отступ */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.3),
+                0 0 0 2px var(--main),
+                0 0 0 4px var(--accent);
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-container:hover {
+            transform: perspective(1000px) rotateX(0) scale(1.02);
+            box-shadow: 
+                0 10px 20px rgba(0,0,0,0.4),
+                0 0 0 3px var(--main),
+                0 0 0 6px var(--accent);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            filter: sepia(30%) contrast(110%);
+        }
+
+        iframe {
+            border: 2px solid var(--main) !important;
+            box-shadow: 0 0 25px var(--overlay) !important;
+            border-radius: 12px !important;
+            margin: 15px 0; /* Уменьшен отступ */
+            transition: transform 0.3s;
+        }
+
+        iframe:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px var(--overlay) !important;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+                margin: 15px;
+            }
+            h1 {
+                font-size: 2.5em; /* Увеличен размер шрифта для мобильных */
+            }
+            .photo-container img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>С Днём Валентина, Анечка!</h1>
+        <div class="heart">♥️</div>
+        <p>Самой красивой, доброй и неотрозмой Ане!</p>
+
+        <div class="photo-container">
+            <img src="photo_2025-02-14_17-10-59.jpg" alt="Наше с Аней фото">
+        </div>
+
+        <p>Ты - как этот трек: такая же нежная и великолепная:</p>
+        
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5f5gkWntWNTTxbbh1Hp8tu?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+        <p>Ты выглядишь как топ один во всех чартах!</p>
+        <div class="heart">♥️</div>
+    </div>
+</body>
+</html>
